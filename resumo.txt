@@ -1,0 +1,86 @@
+
+crie uma conta gratis no mongoDB, 
+network acess: mude o acesso ao bd para qualaquer ip
+database acess: defina um usuario como admin
+natan8bits: 0OGUVlhaTEiQVMiP
+
+baixe a biblioteca prisma para se comunicar com o mongoDB
+ - npm install prisma --save-dev
+em seguida:
+ - npx prisma init
+Vá em MongoDB: clusters > seuProjeto > connect: copie o código
+
+esse comando vai criar alguns arquivos, entre eles o .env
+dentro dele,em DATABASE_URL = ""
+cole o código copiado do MongoDB e adicione o usuario e senha nos campos determinados na url
+
+Vá na documentação do prisma, connect your database(mongoDB) copie o código
+e cole no arquivo "prisma > schema.prisma" no lugar do outro objeto db que havia
+
+copie exemplos de model no prisma e cole em schema.prisma:
+ex: model user {
+    id    String @id @default(auto()) @map("_id") @db.ObjectId
+    name string @unique
+}
+
+instale o prisma client:
+ - npm install @prisma/client
+
+Execute o comano a seguir para avisar ao Banco de dados que as configurações ja foram feitas
+npx prisma db push
+
+Para conferir o banco de dados use o comando:
+ - npx prisma studio
+
+//criando rotas da API
+
+/**
+ * HTTP métodos
+ * get - listar
+ * post - criar
+ * put - editar vários
+ * patch - editar um
+ * delete - deletar
+ * 
+ * uma rota precisa de duas coisas:
+ * 1)tipo da rota/ metdo http
+ * 2) endereço
+ */
+
+node server.js // executa o server
+ctrl + c // kill server
+
+baixe a extensão thunder Client para visualizar as rotas
+
+passos a seguir:
+
+    - Criar um usuário;
+    - Listar todos os usuários;
+    - Editar um usuário;
+    - deletar um usuário.
+
+
+obs: após fazer uma mudança no serve.js é preciso reiniciar o server;
+para contornar isso usa-se o comando: node --watch server.js
+
+
+formas de enviar resquest:
+
+Query params(GET)
+    ex:servidor.com/usuario?estado=bahia&cidade=salvador
+    obs: os dados fiam expostos
+
+Route Params(GET, PUT, DELETE), buscar, deletar ou editar algo específico
+ex: get - servidor.com/usuario/22
+
+Body Params (POST e PUT), informações sensiveis ou muitas infromações
+    ex: {"nome: "rodolfo", "id": "22"}
+
+obs: ctrl + f //para buscar por uma palavra no terminal
+
+HTTP status: a comunicação entre frond e back ocorre pelo status
+
+2xx - sucesso
+4xx - erro cliente
+5xx - erro servidor
+
