@@ -51,6 +51,17 @@ node server.js // executa o server
 ctrl + c // kill server
 
 baixe a extensão thunder Client para visualizar as rotas
+    crie um request e escreva no body para post e update:
+    ex:
+    {
+        "email": "carlo@gmail.com",
+        "name": "Carlo",
+        "age": "24"
+    }
+    
+exemplo de query params:
+    http://localhost:3000/usuarios/?name=Carlo&age=24
+
 
 passos a seguir:
 
