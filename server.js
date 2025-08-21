@@ -1,10 +1,12 @@
 import express from 'express'
 import { PrismaClient } from '@prisma/client'
+import cors from 'cors'
 
 const prisma = new PrismaClient()
 
 const app = express()
 app.use(express.json())
+app.use(cors()) //habilita que qualquer pagina acesse a API
 
 
 app.post('/usuarios', async (req, res) => {
@@ -50,6 +52,8 @@ app.delete('/usuarios/:id', async (req, res) => {
 
 app.get('/usuarios', async (req, res) => {
 
+    //res.send('Ok, deu bom!')
+
     let users = []
 
     if(req.query){
@@ -64,7 +68,7 @@ app.get('/usuarios', async (req, res) => {
         users = await prisma.user.findMany()
     }
 
-
+    res.send(users)
     res.status(200).json(users)
 })
 

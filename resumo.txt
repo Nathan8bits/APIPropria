@@ -4,6 +4,13 @@ network acess: mude o acesso ao bd para qualaquer ip
 database acess: defina um usuario como admin
 natan8bits: 0OGUVlhaTEiQVMiP
 
+Inicie um projeto com:
+    npm init -y
+    obs: esse comando com o modificado -y responde tudo com yes.
+
+baixe o express:
+    npm i express
+
 baixe a biblioteca prisma para se comunicar com o mongoDB
  - npm install prisma --save-dev
 em seguida:
@@ -15,6 +22,10 @@ dentro dele,em DATABASE_URL = ""
 cole o código copiado do MongoDB e adicione o usuario e senha nos campos determinados na url
 
 Vá na documentação do prisma, connect your database(mongoDB) copie o código
+    datasource db {
+        provider = "mongodb"
+        url = env("DATABASE_URL")
+    }
 e cole no arquivo "prisma > schema.prisma" no lugar do outro objeto db que havia
 
 copie exemplos de model no prisma e cole em schema.prisma:
@@ -27,7 +38,7 @@ instale o prisma client:
  - npm install @prisma/client
 
 Execute o comano a seguir para avisar ao Banco de dados que as configurações ja foram feitas
-npx prisma db push
+    npx prisma db push
 
 Para conferir o banco de dados use o comando:
  - npx prisma studio
@@ -94,4 +105,17 @@ HTTP status: a comunicação entre frond e back ocorre pelo status
 2xx - sucesso
 4xx - erro cliente
 5xx - erro servidor
+
+Configurar quem pode ter acesso ao backend
+    Instale o Cors: 
+        npm install cors
+
+    importe o cors no 'serve.js':
+        import cors from 'cors'
+        ...
+        app.use(cors()) //habilita que qualquer pagina acesse a API
+obs: essa não é uma prática segura. Porém, é possível especificar quem poderá ter acesso
+
+
+
 
